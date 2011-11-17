@@ -1,0 +1,56 @@
+= Peas
+
+Peas defines constants from music theory and allows one to perform math with
+them.  Currently supports pitches (as MIDI values), pitch classes, and 
+intervals using semitones, wholetones, chromatic, latin or diatonic
+abbreviations.
+
+Coming soon: circles (as in 'circle of fifths'), scales, chords and chord
+progressions.
+
+== Features
+
+* Defines common music theory constants:
+  * PitchClass: C, Ds, Eb, etc
+  * Pitch (as a MIDI value): C4, Ds5, Gb8, etc
+  * Intervals:
+    * Semitone: S0, S1, S2 ... S127
+    * Wholetone: W0, W1, W2 ... W63
+    * Chromatic: d2, A1, d3, A2 ... A7
+    * Latin: S, T and TT (semi, whole and tritones)
+    * Diatonic: P1, m2, M2, m3, M3, P4, A4, d5, P5, m6, M6, m7, M7 and P8
+* Constants output as their name (done using {named_value_class}[http://github.com/mgarriss/named_value_class])
+* Adds helpers to Fixnum: 2.octaves, 3.semitones, 4.major_seconds, etc.
+
+== Installation
+
+   gem install peas
+  
+== Requirements
+
+Currently only tested with Ruby 1.9.2-p290.
+
+== Usage
+
+  require 'peas'
+
+  include Peas::Calculator
+  include Peas::Intervals
+
+  [Ab3,G3,Ab3,C2].each do |root_pitch|
+    [P1,m3,P5,P5,d5].each do |interval|
+      play_midi_note(root_pitch + interval)
+      play_midi_note(root_pitch + interval + 2.octaves)
+      play_midi_note(root_pitch - 2.tritones)
+    end
+  end
+
+== Author
+
+* {Michael Garriss}[http://github.com/mgarriss] <mgarriss at gmail.com>
+
+== License
+
+Apache 2.0, See the file LICENSE
+
+Copyright (c) 2011 Michael Garriss

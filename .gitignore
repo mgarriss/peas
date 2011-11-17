@@ -1,0 +1,8 @@
+/*.gem
+/*.gempspec
+/lib/old
+/peanuts.gemspec
+/peas.gemspec
+/doc
+/.yardoc
+/scraps.txt
