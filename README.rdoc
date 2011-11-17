@@ -34,7 +34,7 @@ Currently only tested with Ruby 1.9.2-p290.
 
   require 'peas'
 
-  include Peas::Calculator
+  include Peas::Pitches
   include Peas::Intervals
 
   [Ab3,G3,Ab3,C2].each do |root_pitch|
@@ -44,6 +44,12 @@ Currently only tested with Ruby 1.9.2-p290.
       play_midi_note(root_pitch - 2.tritones)
     end
   end
+  
+== Issues
+
+* The "super from singleton method that is defined to multiple classes is not supported; this will be fixed in 1.9.3 or later" error from named_value_class shows it's ugly head sometimes.
+* Still not sure how to best deal with the name collisions of A1-A7 as Intervals and as Pitches.
+* Weak documentation
 
 == Author
 

@@ -176,3 +176,15 @@ describe Integer do
     end
   end
 end
+
+include Peas::Pitches
+include Peas::Intervals
+
+[Ab3,G3,Ab3,C2].each do |root_pitch|
+  [P1,m3,P5,P5,d5].each do |interval|
+    root_pitch + interval
+    root_pitch + interval + 2.octaves
+    root_pitch + interval + 4.minor_sevenths
+    root_pitch - 2.tritones
+  end
+end

@@ -279,7 +279,7 @@ describe Peas::Pitch do
     end
     
     it 'returns self for pitch that is natural' do
-      A4.as_flat.to_s.must_equal 'A4' 
+      Peas::Pitch::A4.as_flat.to_s.must_equal 'A4' 
       B4.as_flat.to_s.must_equal 'B4' 
       C4.as_flat.to_s.must_equal 'C4' 
       D4.as_flat.to_s.must_equal 'D4' 
@@ -309,7 +309,7 @@ describe Peas::Pitch do
     end
     
     it 'returns self for pitch that is natural' do
-      A4.as_sharp.to_s.must_equal 'A4' 
+      Peas::Pitch::A4.as_sharp.to_s.must_equal 'A4' 
       B4.as_sharp.to_s.must_equal 'B4' 
       C4.as_sharp.to_s.must_equal 'C4' 
       D4.as_sharp.to_s.must_equal 'D4' 

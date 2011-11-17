@@ -42,7 +42,8 @@ class Integer
   alias perfect_fourth perfect_fourths
   
   def tritones
-    Peas::Interval::Latin "TTx#{self}", self * 6
+    # Peas::Interval::Latin "TTx#{self}", self * 6
+    self * 6
   end
   alias tritone tritones
   
@@ -91,3 +92,5 @@ class Integer
   end
   alias octave octaves
 end
+
+

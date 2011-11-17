@@ -31,7 +31,7 @@ describe Peas do
           (C_1 + S0 ).must_equal C_1
           (F3  + M2 ).must_equal G3
           (F3  + S14).must_equal G4
-          (A2  + S12).must_equal A3
+          (Peas::Pitch::A2  + S12).must_equal Peas::Pitch::A3
         end
         
         it 'must be reflexive' do
@@ -176,8 +176,8 @@ describe Peas do
     describe 'octaves' do
       it 'defines P8 constant' do
         (F2 + P8).must_equal F3
-        (A1 + P8).must_equal A2
-        (P8 + A2).must_equal A3
+        (Peas::Pitch::A1 + P8).must_equal Peas::Pitch::A2
+        (P8 + Peas::Pitch::A2).must_equal Peas::Pitch::A3
         
         (Bb2 - P8).must_equal Bb1
       end
