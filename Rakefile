@@ -3,7 +3,7 @@ $:.unshift File.join( File.dirname( __FILE__ ), 'lib')
 
 require 'rake'
 require 'rake/testtask'
-require 'peas'
+require 'peas/version'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "spec"
@@ -15,8 +15,12 @@ task :build do
   system "gem build peas.gemspec"
 end
  
+task :local => :build do
+  system "gem install peas-#{Peas::VERSION}.gem"
+end
+
 task :release => :build do
-  # system "gem push peanuts-#{Peanuts::VERSION}.gem"
+  system "gem push peas-#{Peas::VERSION}.gem"
 end
 
 task :default => [:test]
