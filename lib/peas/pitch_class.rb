@@ -1,7 +1,34 @@
 require 'named_value_class'
 
 module Peas
+  class InvalidOperation < RuntimeError; end
+  
   NamedValueClass 'PitchClass', Fixnum do
+    alias _minus :-
+     
+    def -(rhs)
+      if rhs.class == PitchClass
+        if self >= rhs
+          # TODO: stop the insanity
+          Interval::Diatonic[
+            Interval::Diatonic[self._minus(rhs)].interval_class] ||
+          Interval::Semitone[
+            Interval::Semitone[self._minus(rhs)].interval_class]
+        else
+          Interval::Diatonic[rhs - self]
+        end
+      elsif rhs.class == Pitch
+        self - rhs.pitch_class
+      elsif Peas.is_an_interval?(rhs)
+        result = self._minus(rhs) % 12
+        if is_sharp?
+          PitchClass.sharps(result)
+        else
+          PitchClass.flats(result)
+        end
+      end
+    end
+    
     def is_sharp?
       %w|Bs Cs Ds Es Fs Gs As|.include? @name
     end

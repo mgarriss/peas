@@ -9,8 +9,10 @@ describe Peas do
   describe 'Pitch as LHS' do
     describe 'Pitch as RHS' do
       describe 'Pitch - Pitch' do
-        it 'returns an Interval' do
-          (G3 - C3).must_be_instance_of Fixnum
+        it 'returns a Diatonic interval if possible' do
+          (G3 - C3).to_s.must_equal 'P5'
+          (D3 - C3).to_s.must_equal 'M2'
+          (Db3 - C3).to_s.must_equal 'm2'
         end
         
         it 'reports a major second' do
@@ -18,9 +20,9 @@ describe Peas do
           (G3 - F3).must_equal S2
           (G3 - F3).must_equal M2
           
-          (F3 - G3).must_equal -W1
-          (F3 - G3).must_equal -S2
-          (F3 - G3).must_equal -M2
+          (F3 - G3).must_equal W1
+          (F3 - G3).must_equal S2
+          (F3 - G3).must_equal M2
         end
       end
     end
@@ -81,21 +83,18 @@ describe Peas do
         end
         
         it 'reports a positive major second since it\'s an interval class' do
-          skip
           (F - G).must_equal W1
           (F - G).must_equal S2
           (F - G).must_equal M2
         end
         
         it 'never reports a interval of more than 6 semitones' do
-          skip
           (C - B).must_equal S1
-          (G - C).must_equal S6
-          (C - G).must_equal S6
+          (G - C).must_equal P4
+          (C - G).must_equal P4
         end
         
         it 'is, oddly enough, reflexive' do
-          skip
           (G - C).must_equal (C - G)
           (A - G).must_equal (G - A)
           (Ds - Db).must_equal (Db - Ds)
@@ -121,8 +120,9 @@ describe Peas do
       end
       
       describe 'PitchClass - Interval' do
-        it 'should be tested' do
-          skip
+        it 'should return a PitchClass' do
+          (C - S1).to_s.must_equal 'B'
+          (C - W1).to_s.must_equal 'Bb'
         end
       end
     end
@@ -157,7 +157,7 @@ describe Peas do
   describe 'Interval as LHS' do
     describe 'Interval - Pitch' do
       it 'is an invalid operation' do
-        skip
+        proc {M2 - C3}.must_raise Peas::InvalidOperation
       end
     end
     

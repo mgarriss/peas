@@ -4,18 +4,33 @@ require 'peas/pitch'
 module Peas
   module Interval
     # see: http://en.wikipedia.org/wiki/Interval_(music)
+    module Math
+      def -(rhs)
+        if [Pitch,PitchClass].include?(rhs.class)
+          raise Peas::InvalidOperation, '(Interval - Pitch) has no meaning'
+        else
+          super
+        end
+      end
+    end
 
-    NamedValueClass 'Semitone', Fixnum 
+    NamedValueClass 'Semitone', Fixnum do
+      include Peas::Interval::Math
+    end
     128.times do |x|
       Semitone "S#{x}", x
     end
     
-    NamedValueClass 'Wholetone', Fixnum 
+    NamedValueClass 'Wholetone', Fixnum  do
+      include Peas::Interval::Math
+    end
     64.times do |x|
       Wholetone "W#{x}", x * 2
     end
     
-    NamedValueClass 'Chromatic', Fixnum 
+    NamedValueClass 'Chromatic', Fixnum do
+      include Peas::Interval::Math
+    end
     Chromatic :d2, 0
     Chromatic :A1, 1
     Chromatic :d3, 2
@@ -31,12 +46,15 @@ module Peas
     Chromatic :d8, 11
     Chromatic :A7, 12
 
-    NamedValueClass 'Latin', Fixnum 
+    NamedValueClass 'Latin', Fixnum do
+      include Peas::Interval::Math
+    end
     Latin 'S',  1
     Latin 'T',  3
     Latin 'TT', 6
     
     NamedValueClass 'Diatonic',  Fixnum do
+      include Peas::Interval::Math
       def inverse
         case @name
         when 'P1' then Diatonic::P8
@@ -95,5 +113,13 @@ module Peas
 
     include Interval::Diatonic::NamedValues
     extend  Interval::Diatonic::NamedValues
+  end
+  
+  def self.is_an_interval?(obj)
+    [Interval::Semitone,
+     Interval::Wholetone,
+     Interval::Chromatic,
+     Interval::Latin,
+     Interval::Diatonic].include? obj.class
   end
 end

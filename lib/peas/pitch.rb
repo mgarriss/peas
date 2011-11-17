@@ -1,10 +1,31 @@
 require 'forwardable'
 require 'peas/pitch_class'
+require 'peas/interval'
 
 module Peas
   NamedValueClass 'Pitch', Fixnum do
     extend Forwardable
     def_delegators :pitch_class, :is_sharp?, :is_flat?, :is_natural?
+
+    alias _minus :-
+     
+    def -(rhs)
+      if rhs.class == Pitch
+        if self >= rhs
+          Interval::Diatonic[super(rhs)] || Interval::Semitone[super(rhs)]
+        else
+          rhs - self
+        end
+      elsif rhs.class == PitchClass
+        self.pitch_class - rhs
+      elsif Peas.is_an_interval?(rhs)
+        if is_sharp?
+          Pitch.sharps(self._minus(rhs))
+        else
+          Pitch.flats(self._minus(rhs))
+        end
+      end
+    end
     
     def as_flat
       self.class.flats(self)
