@@ -3,7 +3,7 @@ require 'peas/pitch_class'
 require 'peas/interval'
 
 module Peas
-  NamedValueClass 'Pitch', Fixnum do
+  NamedValueClass Pitch:Fixnum do
     extend Forwardable
     def_delegators :pitch_class, :is_sharp?, :is_flat?, :is_natural?
 
@@ -18,7 +18,7 @@ module Peas
         end
       elsif rhs.class == PitchClass
         self.pitch_class - rhs
-      elsif Peas.is_an_interval?(rhs)
+      elsif rhs.is_a? Interval::Base
         if is_sharp?
           Pitch.sharps(self._minus(rhs))
         else
@@ -110,10 +110,10 @@ module Peas
     end
   end
   PitchClass::NamedValues::Collection.each do |pclass|
-    Pitch "#{pclass}_1", pclass, pitch_class:pclass, octave:-1
+    Pitch "#{pclass}_1" => pclass, pitch_class:pclass, octave:-1
     0.upto(9) do |octave|
       name = pclass.to_s + octave.to_s
-      Pitch name, (((octave+1)*12)+pclass), pitch_class:pclass, octave:octave
+      Pitch name => (((octave+1)*12)+pclass), pitch_class:pclass, octave:octave
     end
   end
   

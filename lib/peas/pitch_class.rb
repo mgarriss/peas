@@ -3,7 +3,7 @@ require 'named_value_class'
 module Peas
   class InvalidOperation < RuntimeError; end
   
-  NamedValueClass 'PitchClass', Fixnum do
+  NamedValueClass PitchClass:Fixnum do
     alias _minus :-
      
     def -(rhs)
@@ -19,7 +19,7 @@ module Peas
         end
       elsif rhs.class == Pitch
         self - rhs.pitch_class
-      elsif Peas.is_an_interval?(rhs)
+      elsif rhs.is_a? Interval::Base
         result = self._minus(rhs) % 12
         if is_sharp?
           PitchClass.sharps(result)
@@ -72,25 +72,25 @@ module Peas
     end
   end
   
-  PitchClass 'Bs', 0  # B sharp is just Bs
-  PitchClass 'C',  0
-  PitchClass 'Cs', 1
-  PitchClass 'Db', 1
-  PitchClass 'D',  2
-  PitchClass 'Ds', 3
-  PitchClass 'Eb', 3 
-  PitchClass 'E',  4
-  PitchClass 'Es', 5
-  PitchClass 'Fb', 4
-  PitchClass 'F',  5
-  PitchClass 'Fs', 6
-  PitchClass 'Gb', 6
-  PitchClass 'G',  7
-  PitchClass 'Gs', 8
-  PitchClass 'Ab', 8
-  PitchClass 'A',  9
-  PitchClass 'As', 10
-  PitchClass 'Bb', 10
-  PitchClass 'B',  11
-  PitchClass 'Cb', 11
+  PitchClass Bs: 0  # B sharp is just Bs
+  PitchClass C:  0
+  PitchClass Cs: 1
+  PitchClass Db: 1
+  PitchClass D:  2
+  PitchClass Ds: 3
+  PitchClass Eb: 3 
+  PitchClass E:  4
+  PitchClass Es: 5
+  PitchClass Fb: 4
+  PitchClass F:  5
+  PitchClass Fs: 6
+  PitchClass Gb: 6
+  PitchClass G:  7
+  PitchClass Gs: 8
+  PitchClass Ab: 8
+  PitchClass A:  9
+  PitchClass As: 10
+  PitchClass Bb: 10
+  PitchClass B:  11
+  PitchClass Cb: 11
 end
