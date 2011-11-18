@@ -12,15 +12,16 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :build do
-  system "gem build peas.gemspec"
+  system "gem build ../gemspecs/peas.gemspec"
+  system "mv peas-#{Peas::VERSION}.gem ../gems"
 end
  
 task :local => :build do
-  system "gem install peas-#{Peas::VERSION}.gem"
+  system "gem install ../gems/peas-#{Peas::VERSION}.gem"
 end
 
 task :release => :build do
-  system "gem push peas-#{Peas::VERSION}.gem"
+  system "gem push ../gems/peas-#{Peas::VERSION}.gem"
 end
 
 task :default => [:test]
