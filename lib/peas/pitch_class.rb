@@ -24,8 +24,8 @@ module Peas
   PitchClass Ds:  3,   sharp:true 
   PitchClass Eb:  3,    flat:true 
   PitchClass E:   4, natural:true 
-  PitchClass Es:  5,   sharp:true 
   PitchClass Fb:  4,    flat:true 
+  PitchClass Es:  5,   sharp:true 
   PitchClass F:   5, natural:true 
   PitchClass Fs:  6,   sharp:true 
   PitchClass Gb:  6,    flat:true 
