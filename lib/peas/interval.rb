@@ -2,26 +2,27 @@ require 'named_value_class'
 require 'peas/pitch'
 
 module Peas
+  
+  # see: http://en.wikipedia.org/wiki/Interval_(music)
+  #
   module Interval
-    # see: http://en.wikipedia.org/wiki/Interval_(music)
-    
-    NamedValueClass Base:Integer do
-      def -(rhs)
-        if [Pitch,PitchClass].include?(rhs.class)
-          raise Peas::InvalidOperation, '(Interval - Pitch) has no meaning'
-        else
-          super
-        end
+    NamedValueClass Base:Integer, constrain:0..24 do
+      minus_a Pitch do
+        raise SyntaxError, '(Interval - Pitch) has no meaning'
+      end
+      
+      minus_a PitchClass do
+        raise SyntaxError, '(Interval - PitchClass) has no meaning'
       end
     end
   
     class Semitone < Base; end
-    128.times do |x|
+    25.times do |x|
       Semitone "S#{x}" => x
     end
     
     class Wholetone < Base; end
-    64.times do |x|
+    13.times do |x|
       Wholetone "W#{x}" => x * 2
     end
     
