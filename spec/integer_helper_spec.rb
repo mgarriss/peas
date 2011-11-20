@@ -1,5 +1,5 @@
 require 'helper'
-require 'peas/core_ext'
+require 'peas/integer_helper'
 
 describe Integer do
   # 0 semitones
