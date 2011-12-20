@@ -36,6 +36,10 @@ Currently only tested with Ruby 1.9.2-p290.
 
   include Peas::Pitches
   include Peas::Intervals
+  
+  def play_midi_note(pitch)
+    # maybe use arirusso/micromidi here  
+  end
 
   [Ab3,G3,Ab3,C2].each do |root_pitch|
     [P1,m3,P5,P5,d5].each do |interval|
