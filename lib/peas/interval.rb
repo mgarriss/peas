@@ -7,13 +7,8 @@ module Peas
   #
   module Interval
     NamedValueClass Base:Integer, constrain:0..24 do
-      minus_a Pitch do
-        raise SyntaxError, '(Interval - Pitch) has no meaning'
-      end
-      
-      minus_a PitchClass do
-        raise SyntaxError, '(Interval - PitchClass) has no meaning'
-      end
+      minus_a Pitch, raises:SyntaxError
+      minus_a PitchClass, raises:SyntaxError
     end
   
     class Semitone < Base; end

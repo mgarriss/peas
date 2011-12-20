@@ -3,9 +3,12 @@ require 'named_value_class'
 module Peas
   NamedValueClass PitchClass:Fixnum, constrain:0..11 do
     minus_a 'Interval::Base' do |lhs,minus,rhs|
-      result = minus(rhs) % 12
-      is_sharp? ? PitchClass.sharps(result) : PitchClass.flats(result)
+      result = minus.call(rhs) % 12
+      is_sharp? ? PitchClass.sharps[result] : PitchClass.flats[result]
     end
+    
+    all_operators_with_a :PitchClass, raise:SyntaxError
+    all_operators_with_a :Pitch, raise:SyntaxError
     
     def as_flat
       self.class.naturals[self] || self.class.flats[self]

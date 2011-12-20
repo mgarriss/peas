@@ -4,8 +4,11 @@ require 'peas/pitch_class'
 module Peas
   NamedValueClass Pitch:Fixnum, constrain:0..127 do
     minus_a 'Interval::Base' do |lhs,minus,rhs|
+      result = minus.call(rhs)
       is_sharp? ? Pitch.sharps[result] : Pitch.flats[result]
     end
+    
+    all_operators_with_a :Pitch, raise:SyntaxError
     
     def as_flat
       self.class.naturals[self] || self.class.flats[self]
