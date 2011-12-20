@@ -8,6 +8,8 @@ abbreviations.
 Coming soon: circles (as in 'circle of fifths'), scales, chords and chord
 progressions.
 
+Please ask questions or scold me about this {here}[http://crooked-hideout.blogspot.com/].
+
 == Features
 
 * Defines common music theory constants:
