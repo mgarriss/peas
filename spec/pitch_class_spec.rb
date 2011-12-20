@@ -1,4 +1,4 @@
-require 'helper'
+require 'spec_helper'
 require 'peas/pitch_class'
 
 include Peas::PitchClass::NamedValues

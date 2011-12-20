@@ -1,4 +1,4 @@
-require 'helper'
+require 'spec_helper'
 require 'peas/integer_helper'
 
 describe Integer do

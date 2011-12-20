@@ -1,4 +1,4 @@
-require 'helper'
+require 'spec_helper'
 require 'peas/interval'
 
 include Peas::Intervals
