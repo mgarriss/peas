@@ -1,9 +1,7 @@
-dir = File.dirname(File.expand_path(__FILE__))
-$LOAD_PATH.unshift dir + '/../lib'
+$:.unshift File.join( File.dirname( __FILE__ ))
+$:.unshift File.join( File.dirname( __FILE__ ), '..', 'lib')
 
 require 'minitest/autorun'
-require 'rb-fsevent'
-require 'growl_notify'
 
 
 
