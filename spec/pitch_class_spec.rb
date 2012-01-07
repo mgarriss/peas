@@ -4,6 +4,15 @@ require 'peas/pitch_class'
 include Peas::PitchClass::NamedValues
 
 describe Peas::PitchClass do
+  describe '>, >=, <, and <=' do 
+    it 'raises SyntaxError' do 
+      proc{A > B}.must_raise SyntaxError
+      proc{A >= B}.must_raise SyntaxError
+      proc{A < B}.must_raise SyntaxError
+      proc{A <= B}.must_raise SyntaxError
+    end
+  end
+  
   describe 'constants' do
     it 'has a constant from A to G' do
       A.class.must_equal  Peas::PitchClass
@@ -42,7 +51,7 @@ describe Peas::PitchClass do
       end
     end
   end
-    
+  
   describe '#as_flat' do
     it 'returns self for a pitch that is already flat' do
       Ab.as_flat.to_s.must_equal 'Ab' 
