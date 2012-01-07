@@ -178,7 +178,7 @@ describe Integer do
 end
 
 include Peas::Pitches
-include Peas::Intervals
+include Peas::Interval::NamedValues
 
 [Ab3,G3,Ab3,C2].each do |root_pitch|
   [P1,m3,P5,P5,d5].each do |interval|

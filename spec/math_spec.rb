@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'peas/pitch'
 require 'peas/interval'
 
-include Peas::Intervals
+include Peas::Interval::NamedValues
 include Peas::Pitches    # collision on A1-A7
 
 # ====================

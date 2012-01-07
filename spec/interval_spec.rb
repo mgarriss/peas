@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'peas/interval'
 
-include Peas::Intervals
+include Peas::Interval::NamedValues
 
 describe Peas::Interval do
   describe 'wholetones' do
