@@ -37,7 +37,7 @@ Currently only tested with Ruby 1.9.2-p290.
   require 'peas'
 
   include Peas::Pitches
-  include Peas::Intervals
+  include Peas::Interval::NamedValues
   
   def play_midi_note(pitch)
     # maybe use arirusso/micromidi here  
