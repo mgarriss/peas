@@ -268,6 +268,9 @@ describe Peas::Pitch do
       Gs_1.pitch_class.must_equal Gs
     end
   end
+end
+
+__END__
 
   describe '#as_flat' do
     it 'returns self for a pitch that is already flat' do

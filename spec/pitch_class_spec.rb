@@ -4,15 +4,6 @@ require 'peas/pitch_class'
 include Peas::PitchClass::NamedValues
 
 describe Peas::PitchClass do
-  describe '>, >=, <, and <=' do 
-    it 'raises SyntaxError' do 
-      proc{A > B}.must_raise SyntaxError
-      proc{A >= B}.must_raise SyntaxError
-      proc{A < B}.must_raise SyntaxError
-      proc{A <= B}.must_raise SyntaxError
-    end
-  end
-  
   describe 'constants' do
     it 'has a constant from A to G' do
       A.class.must_equal  Peas::PitchClass
@@ -51,64 +42,75 @@ describe Peas::PitchClass do
       end
     end
   end
-  
-  describe '#as_flat' do
-    it 'returns self for a pitch that is already flat' do
-      Ab.as_flat.to_s.must_equal 'Ab' 
-      Bb.as_flat.to_s.must_equal 'Bb' 
-      Db.as_flat.to_s.must_equal 'Db' 
-      Eb.as_flat.to_s.must_equal 'Eb' 
-      Gb.as_flat.to_s.must_equal 'Gb' 
-    end
-    
-    it 'returns self for pitch that is natural' do
-      A.as_flat.to_s.must_equal 'A' 
-      B.as_flat.to_s.must_equal 'B' 
-      C.as_flat.to_s.must_equal 'C' 
-      D.as_flat.to_s.must_equal 'D' 
-      E.as_flat.to_s.must_equal 'E' 
-      F.as_flat.to_s.must_equal 'F' 
-      G.as_flat.to_s.must_equal 'G' 
-    end
-    
-    it 'returns flat version of sharp pitch' do
-      As.as_flat.to_s.must_equal 'Bb' 
-      Bs.as_flat.to_s.must_equal 'C' 
-      Cs.as_flat.to_s.must_equal 'Db' 
-      Ds.as_flat.to_s.must_equal 'Eb' 
-      Es.as_flat.to_s.must_equal 'F' 
-      Fs.as_flat.to_s.must_equal 'Gb' 
-      Gs.as_flat.to_s.must_equal 'Ab' 
-    end
+end
+
+__END__
+
+describe '>, >=, <, and <=' do 
+  it 'raises SyntaxError' do 
+    proc{A > B}.must_raise SyntaxError
+    proc{A >= B}.must_raise SyntaxError
+    proc{A < B}.must_raise SyntaxError
+    proc{A <= B}.must_raise SyntaxError
+  end
+end
+
+describe '#as_flat' do
+  it 'returns self for a pitch that is already flat' do
+    Ab.as_flat.to_s.must_equal 'Ab' 
+    Bb.as_flat.to_s.must_equal 'Bb' 
+    Db.as_flat.to_s.must_equal 'Db' 
+    Eb.as_flat.to_s.must_equal 'Eb' 
+    Gb.as_flat.to_s.must_equal 'Gb' 
   end
   
-  describe '#as_sharp' do
-    it 'returns self for a pitch that is already sharp' do
-      As.as_sharp.to_s.must_equal 'As' 
-      Cs.as_sharp.to_s.must_equal 'Cs' 
-      Ds.as_sharp.to_s.must_equal 'Ds' 
-      Fs.as_sharp.to_s.must_equal 'Fs' 
-      Gs.as_sharp.to_s.must_equal 'Gs' 
-    end
-    
-    it 'returns self for pitch that is natural' do
-      A.as_sharp.to_s.must_equal 'A' 
-      B.as_sharp.to_s.must_equal 'B' 
-      C.as_sharp.to_s.must_equal 'C' 
-      D.as_sharp.to_s.must_equal 'D' 
-      E.as_sharp.to_s.must_equal 'E' 
-      F.as_sharp.to_s.must_equal 'F' 
-      G.as_sharp.to_s.must_equal 'G' 
-    end
-    
-    it 'returns sharp version of flat pitch' do
-      Ab.as_sharp.to_s.must_equal 'Gs' 
-      Bb.as_sharp.to_s.must_equal 'As' 
-      Cb.as_sharp.to_s.must_equal 'B' 
-      Db.as_sharp.to_s.must_equal 'Cs' 
-      Eb.as_sharp.to_s.must_equal 'Ds' 
-      Fb.as_sharp.to_s.must_equal 'E' 
-      Gb.as_sharp.to_s.must_equal 'Fs' 
-    end
+  it 'returns self for pitch that is natural' do
+    A.as_flat.to_s.must_equal 'A' 
+    B.as_flat.to_s.must_equal 'B' 
+    C.as_flat.to_s.must_equal 'C' 
+    D.as_flat.to_s.must_equal 'D' 
+    E.as_flat.to_s.must_equal 'E' 
+    F.as_flat.to_s.must_equal 'F' 
+    G.as_flat.to_s.must_equal 'G' 
+  end
+  
+  it 'returns flat version of sharp pitch' do
+    As.as_flat.to_s.must_equal 'Bb' 
+    Bs.as_flat.to_s.must_equal 'C' 
+    Cs.as_flat.to_s.must_equal 'Db' 
+    Ds.as_flat.to_s.must_equal 'Eb' 
+    Es.as_flat.to_s.must_equal 'F' 
+    Fs.as_flat.to_s.must_equal 'Gb' 
+    Gs.as_flat.to_s.must_equal 'Ab' 
+  end
+end
+
+describe '#as_sharp' do
+  it 'returns self for a pitch that is already sharp' do
+    As.as_sharp.to_s.must_equal 'As' 
+    Cs.as_sharp.to_s.must_equal 'Cs' 
+    Ds.as_sharp.to_s.must_equal 'Ds' 
+    Fs.as_sharp.to_s.must_equal 'Fs' 
+    Gs.as_sharp.to_s.must_equal 'Gs' 
+  end
+  
+  it 'returns self for pitch that is natural' do
+    A.as_sharp.to_s.must_equal 'A' 
+    B.as_sharp.to_s.must_equal 'B' 
+    C.as_sharp.to_s.must_equal 'C' 
+    D.as_sharp.to_s.must_equal 'D' 
+    E.as_sharp.to_s.must_equal 'E' 
+    F.as_sharp.to_s.must_equal 'F' 
+    G.as_sharp.to_s.must_equal 'G' 
+  end
+  
+  it 'returns sharp version of flat pitch' do
+    Ab.as_sharp.to_s.must_equal 'Gs' 
+    Bb.as_sharp.to_s.must_equal 'As' 
+    Cb.as_sharp.to_s.must_equal 'B' 
+    Db.as_sharp.to_s.must_equal 'Cs' 
+    Eb.as_sharp.to_s.must_equal 'Ds' 
+    Fb.as_sharp.to_s.must_equal 'E' 
+    Gb.as_sharp.to_s.must_equal 'Fs' 
   end
 end
